@@ -17,11 +17,11 @@ export interface Course {
 export const mockCourses: Course[] = [
   {
     id: 'course-1',
-    title: 'React Fundamentals',
-    description: 'Master the basics of React and learn how to build modern web applications with the most popular JavaScript library.',
+    title: 'Nebosh Masterclass',
+    description: 'Learn Nebosh in an Effective way',
     instructor: 'Sarah Johnson',
     image: 'https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=500&h=300&fit=crop',
-    category: 'Web Development',
+    category: 'Safety',
     level: 'Beginner',
     enrollments: 2540,
     rating: 4.8,
