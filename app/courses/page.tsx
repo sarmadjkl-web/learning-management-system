@@ -30,22 +30,22 @@ export default function CoursesPage() {
     <div className="p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Explore Courses</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Explore Courses</h1>
+        <p className="mt-2 text-muted-foreground">
           Choose from {mockCourses.length} courses and start learning today
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-4 gap-8">
+      <div className="grid gap-8 lg:grid-cols-4">
         {/* Sidebar Filters */}
         <div className="lg:col-span-1">
-          <div className="sticky top-20 bg-white border border-green-100 rounded-xl p-6 shadow-sm">
+          <div className="sticky top-20 rounded-xl border border-border bg-card p-6 shadow-sm">
             <CourseFilters
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
               selectedLevel={selectedLevel}
-              setSelectedLevel={setSelectedLevel}
               selectedCategory={selectedCategory}
+              setSelectedLevel={setSelectedLevel}
               setSelectedCategory={setSelectedCategory}
             />
           </div>
@@ -56,27 +56,27 @@ export default function CoursesPage() {
           {filteredCourses.length > 0 ? (
             <>
               <div className="mb-6">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   Showing <span className="font-semibold">{filteredCourses.length}</span> course
                   {filteredCourses.length !== 1 ? 's' : ''}
                 </p>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid gap-6 md:grid-cols-2">
                 {filteredCourses.map((course) => (
                   <CourseCard key={course.id} course={course} />
                 ))}
               </div>
             </>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">No courses found matching your filters</p>
+            <div className="py-12 text-center">
+              <p className="text-lg text-muted-foreground">No courses found matching your filters</p>
               <button
                 onClick={() => {
                   setSearchTerm('');
                   setSelectedLevel('All Levels');
                   setSelectedCategory('All Categories');
                 }}
-                className="mt-4 text-green-600 hover:text-green-700 font-medium"
+                className="mt-4 font-medium text-primary hover:text-primary/80"
               >
                 Clear filters and try again
               </button>

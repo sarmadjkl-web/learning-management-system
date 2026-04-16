@@ -42,18 +42,18 @@ export function CourseFilters({
     <div className="space-y-6">
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           placeholder="Search courses..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="pl-10 border-green-200 focus:border-green-500"
+          className="border-border pl-10 focus-visible:ring-primary"
         />
       </div>
 
       {/* Level Filter */}
       <div>
-        <p className="text-sm font-semibold text-gray-900 mb-3">Level</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Level</p>
         <div className="flex flex-wrap gap-2">
           {levels.map((level) => (
             <Button
@@ -61,11 +61,6 @@ export function CourseFilters({
               variant={selectedLevel === level ? 'default' : 'outline'}
               size="sm"
               onClick={() => setSelectedLevel(level)}
-              className={
-                selectedLevel === level
-                  ? 'bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white border-0'
-                  : 'border-green-200 text-gray-700 hover:border-green-500'
-              }
             >
               {level}
             </Button>
@@ -75,7 +70,7 @@ export function CourseFilters({
 
       {/* Category Filter */}
       <div>
-        <p className="text-sm font-semibold text-gray-900 mb-3">Category</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Category</p>
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <Button
@@ -83,11 +78,6 @@ export function CourseFilters({
               variant={selectedCategory === category ? 'default' : 'outline'}
               size="sm"
               onClick={() => setSelectedCategory(category)}
-              className={
-                selectedCategory === category
-                  ? 'bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white border-0'
-                  : 'border-green-200 text-gray-700 hover:border-green-500'
-              }
             >
               {category}
             </Button>
@@ -100,9 +90,9 @@ export function CourseFilters({
         <Button
           variant="outline"
           onClick={resetFilters}
-          className="w-full border-green-200 text-gray-700 hover:bg-green-50"
+          className="w-full text-foreground"
         >
-          <X className="h-4 w-4 mr-2" />
+          <X className="mr-2 h-4 w-4" />
           Clear Filters
         </Button>
       )}

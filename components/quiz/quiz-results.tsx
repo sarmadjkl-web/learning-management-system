@@ -26,20 +26,18 @@ export function QuizResults({
   const isPassed = score >= passingScore;
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4">
-      <Card className="bg-white border-green-100 p-8 max-w-2xl w-full">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <Card className="w-full max-w-2xl border-border bg-card p-8">
         {/* Icon */}
-        <div className="flex justify-center mb-6">
+        <div className="mb-6 flex justify-center">
           <div
-            className={`h-20 w-20 rounded-full flex items-center justify-center ${
-              isPassed
-                ? 'bg-green-100'
-                : 'bg-orange-100'
+            className={`flex h-20 w-20 items-center justify-center rounded-full ${
+              isPassed ? 'bg-primary/20' : 'bg-destructive/20'
             }`}
           >
             <Award
               className={`h-12 w-12 ${
-                isPassed ? 'text-green-600' : 'text-orange-600'
+                isPassed ? 'text-primary' : 'text-destructive'
               }`}
             />
           </div>
@@ -47,43 +45,43 @@ export function QuizResults({
 
         {/* Result Text */}
         <h1
-          className={`text-4xl font-bold text-center mb-2 ${
-            isPassed ? 'text-green-600' : 'text-orange-600'
+          className={`mb-2 text-center text-4xl font-bold ${
+            isPassed ? 'text-primary' : 'text-destructive'
           }`}
         >
           {isPassed ? 'Great Job!' : 'Keep Practicing!'}
         </h1>
-        <p className="text-center text-gray-600 text-lg mb-8">
+        <p className="mb-8 text-center text-lg text-muted-foreground">
           {isPassed
             ? 'You passed the quiz. Excellent work!'
             : `You need ${passingScore}% to pass. Keep learning!`}
         </p>
 
         {/* Score Display */}
-        <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-lg p-8 mb-8 border border-green-100">
-          <div className="grid md:grid-cols-3 gap-6">
+        <div className="mb-8 rounded-lg border border-border bg-secondary p-8">
+          <div className="grid gap-6 md:grid-cols-3">
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-2">Your Score</p>
-              <p className="text-5xl font-bold text-green-600">{score}%</p>
+              <p className="mb-2 text-sm text-muted-foreground">Your Score</p>
+              <p className="text-5xl font-bold text-primary">{score}%</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-2">Correct Answers</p>
-              <p className="text-5xl font-bold text-teal-600">
+              <p className="mb-2 text-sm text-muted-foreground">Correct Answers</p>
+              <p className="text-5xl font-bold text-primary">
                 {correctAnswers}/{totalQuestions}
               </p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-2">Passing Score</p>
-              <p className="text-5xl font-bold text-blue-600">{passingScore}%</p>
+              <p className="mb-2 text-sm text-muted-foreground">Passing Score</p>
+              <p className="text-5xl font-bold text-primary">{passingScore}%</p>
             </div>
           </div>
         </div>
 
         {/* Progress Bar */}
         <div className="mb-8">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">Quiz Performance</span>
-            <span className="text-sm font-bold text-green-600">{score}%</span>
+          <div className="mb-2 flex items-center justify-between">
+            <span className="text-sm font-medium text-foreground">Quiz Performance</span>
+            <span className="text-sm font-bold text-primary">{score}%</span>
           </div>
           <Progress value={score} className="h-3" />
         </div>
@@ -92,7 +90,7 @@ export function QuizResults({
         <div className="space-y-3">
           {isPassed && (
             <Link href={`/courses/${courseId}/lesson/${lessonId}`} className="block">
-              <Button className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white">
+              <Button className="w-full">
                 Continue Learning
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -100,7 +98,7 @@ export function QuizResults({
           )}
           <button
             onClick={() => window.location.reload()}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-green-200 text-gray-700 hover:bg-green-50 transition-colors font-medium"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-border px-6 py-3 font-medium text-foreground transition-colors hover:bg-secondary"
           >
             <RotateCcw className="h-4 w-4" />
             {isPassed ? 'Retake Quiz' : 'Try Again'}
@@ -108,7 +106,7 @@ export function QuizResults({
           <Link href={`/courses/${courseId}`} className="block">
             <Button
               variant="outline"
-              className="w-full border-green-200 text-gray-700 hover:bg-green-50"
+              className="w-full border-border text-foreground hover:bg-secondary"
             >
               <Home className="mr-2 h-4 w-4" />
               Back to Course
@@ -117,11 +115,11 @@ export function QuizResults({
         </div>
 
         {/* Encouragement */}
-        <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg text-center">
-          <p className="text-sm text-blue-800">
+        <div className="mt-8 rounded-lg border border-border bg-secondary p-4 text-center">
+          <p className="text-sm text-muted-foreground">
             {isPassed
-              ? 'Keep up the great work! You\'re on your way to mastering this course.'
-              : 'Review the lesson material and try again. You\'re almost there!'}
+              ? "Keep up the great work! You're on your way to mastering this course."
+              : "Review the lesson material and try again. You're almost there!"}
           </p>
         </div>
       </Card>

@@ -13,63 +13,63 @@ interface CourseCardProps {
 }
 
 export function CourseCard({ course }: CourseCardProps) {
-  const levelColor = {
-    Beginner: 'bg-green-100 text-green-800',
-    Intermediate: 'bg-teal-100 text-teal-800',
-    Advanced: 'bg-blue-100 text-blue-800',
+  const levelColor: Record<string, string> = {
+    Beginner: 'bg-accent text-accent-foreground hover:bg-accent/80',
+    Intermediate: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+    Advanced: 'bg-primary text-primary-foreground hover:bg-primary/80',
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 border-green-100 bg-white h-full flex flex-col">
+    <Card className="flex h-full flex-col overflow-hidden border-border bg-card transition-all duration-300 hover:scale-105 hover:shadow-lg">
       {/* Course Image */}
-      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-green-100 to-teal-100">
+      <div className="relative h-48 overflow-hidden bg-muted">
         <img
           src={course.image}
           alt={course.title}
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
-        <Badge className={`absolute top-4 right-4 ${levelColor[course.level]}`}>
+        <Badge className={`absolute right-4 top-4 ${levelColor[course.level] || 'bg-primary text-primary-foreground hover:bg-primary/80'}`}>
           {course.level}
         </Badge>
       </div>
 
       {/* Content */}
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="flex flex-1 flex-col p-6">
         {/* Category */}
-        <p className="text-xs text-teal-600 font-semibold uppercase mb-2">{course.category}</p>
+        <p className="mb-2 text-xs font-semibold uppercase text-primary">{course.category}</p>
 
         {/* Title */}
-        <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">{course.title}</h3>
+        <h3 className="mb-2 line-clamp-2 text-lg font-bold text-foreground">{course.title}</h3>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 mb-4 line-clamp-2">{course.description}</p>
+        <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{course.description}</p>
 
         {/* Instructor */}
-        <p className="text-xs text-gray-600 mb-4">By <span className="font-semibold">{course.instructor}</span></p>
+        <p className="mb-4 text-xs text-muted-foreground">By <span className="font-semibold text-foreground">{course.instructor}</span></p>
 
         {/* Progress Bar (if enrolled) */}
         {course.enrolled && course.progress > 0 && (
           <div className="mb-4">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-xs font-medium text-gray-700">Progress</span>
-              <span className="text-xs font-bold text-green-600">{course.progress}%</span>
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-xs font-medium text-foreground">Progress</span>
+              <span className="text-xs font-bold text-primary">{course.progress}%</span>
             </div>
             <Progress value={course.progress} className="h-2" />
           </div>
         )}
 
         {/* Stats */}
-        <div className="flex items-center gap-4 text-sm text-gray-600 mb-4 pb-4 border-b border-green-100">
+        <div className="mb-4 flex items-center gap-4 border-b border-border pb-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
-            <Users className="h-4 w-4 text-teal-600" />
+            <Users className="h-4 w-4 text-primary" />
             <span>{course.enrollments.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+            <Star className="h-4 w-4 fill-primary text-primary" />
             <span>{course.rating}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4 text-green-600" />
+            <Clock className="h-4 w-4 text-primary" />
             <span>{course.duration}</span>
           </div>
         </div>
@@ -77,7 +77,7 @@ export function CourseCard({ course }: CourseCardProps) {
         {/* CTA Button */}
         <div className="mt-auto">
           <Link href={`/courses/${course.id}`}>
-            <Button className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white">
+            <Button className="w-full">
               {course.enrolled ? 'Continue Learning' : 'Enroll Now'}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

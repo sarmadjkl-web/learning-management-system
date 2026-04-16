@@ -7,34 +7,33 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from 'recharts';
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { mockDailyActivity } from '@/lib/data/analytics';
+
+const chartConfig = {
+  minutes: {
+    label: "Minutes",
+    color: "var(--primary)",
+  },
+} satisfies ChartConfig;
 
 export function ActivityChart() {
   return (
-    <Card className="bg-white border-green-100">
+    <Card className="bg-card">
       <CardHeader>
         <CardTitle>Learning Activity</CardTitle>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
+        <ChartContainer config={chartConfig} className="h-[300px] w-full">
           <BarChart data={mockDailyActivity}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0f2f1" />
-            <XAxis dataKey="date" stroke="#999" />
-            <YAxis stroke="#999" />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: '#fff',
-                border: '2px solid #10b981',
-                borderRadius: '8px',
-              }}
-              cursor={{ fill: 'rgba(16, 185, 129, 0.1)' }}
-            />
-            <Bar dataKey="minutes" fill="#10b981" radius={[8, 8, 0, 0]} />
+            <CartesianGrid vertical={false} />
+            <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <Bar dataKey="minutes" fill="var(--color-minutes)" radius={[4, 4, 0, 0]} />
           </BarChart>
-        </ResponsiveContainer>
+        </ChartContainer>
       </CardContent>
     </Card>
   );

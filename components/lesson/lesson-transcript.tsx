@@ -20,35 +20,35 @@ export function LessonTranscript({ transcript }: LessonTranscriptProps) {
   };
 
   return (
-    <Card className="bg-white border-green-100 overflow-hidden">
+    <Card className="overflow-hidden border-border bg-card">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-6 hover:bg-green-50 transition-colors"
+        className="flex w-full items-center justify-between p-6 transition-colors hover:bg-secondary"
       >
-        <h3 className="font-semibold text-gray-900">Transcript</h3>
+        <h3 className="font-semibold text-foreground">Transcript</h3>
         {isExpanded ? (
-          <ChevronUp className="h-5 w-5 text-gray-600" />
+          <ChevronUp className="h-5 w-5 text-muted-foreground" />
         ) : (
-          <ChevronDown className="h-5 w-5 text-gray-600" />
+          <ChevronDown className="h-5 w-5 text-muted-foreground" />
         )}
       </button>
 
       {isExpanded && (
-        <div className="border-t border-green-100 p-6 space-y-4">
+        <div className="space-y-4 border-t border-border p-6">
           {/* Copy Button */}
           <Button
             variant="outline"
             size="sm"
             onClick={handleCopy}
-            className="border-green-200 text-gray-700 hover:bg-green-50"
+            className="border-border text-foreground hover:bg-secondary"
           >
-            <Copy className="h-4 w-4 mr-2" />
+            <Copy className="mr-2 h-4 w-4" />
             {copied ? 'Copied!' : 'Copy Transcript'}
           </Button>
 
           {/* Transcript Content */}
-          <div className="bg-gray-50 rounded-lg p-4 max-h-96 overflow-y-auto">
-            <p className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
+          <div className="max-h-96 overflow-y-auto rounded-lg bg-muted p-4">
+            <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground">
               {transcript}
             </p>
           </div>

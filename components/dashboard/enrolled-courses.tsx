@@ -9,7 +9,7 @@ import { ArrowRight } from 'lucide-react';
 
 export function EnrolledCourses() {
   return (
-    <Card className="bg-white border-green-100">
+    <Card className="bg-card">
       <CardHeader>
         <CardTitle>Your Enrolled Courses</CardTitle>
       </CardHeader>
@@ -17,24 +17,24 @@ export function EnrolledCourses() {
         {mockCourseProgress.map((course) => (
           <div
             key={course.courseId}
-            className="pb-6 border-b border-green-100 last:border-0 last:pb-0"
+            className="pb-6 border-b border-border last:border-0 last:pb-0"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
-                <h4 className="font-semibold text-gray-900">{course.courseName}</h4>
-                <p className="text-xs text-gray-600 mt-1">
+                <h4 className="font-semibold text-foreground">{course.courseName}</h4>
+                <p className="text-xs text-muted-foreground mt-1">
                   {course.completedLessons} of {course.totalLessons} lessons
                 </p>
               </div>
-              <p className="text-sm font-bold text-green-600">{course.progress}%</p>
+              <p className="text-sm font-bold text-primary">{course.progress}%</p>
             </div>
             <Progress value={course.progress} className="h-2 mb-3" />
-            <p className="text-xs text-gray-500">{course.hoursSpent} hours spent</p>
+            <p className="text-xs text-muted-foreground">{course.hoursSpent} hours spent</p>
           </div>
         ))}
 
         <Link href="/courses">
-          <Button className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white">
+          <Button className="w-full">
             View All Courses
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>

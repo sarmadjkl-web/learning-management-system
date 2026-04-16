@@ -44,19 +44,19 @@ export function FeaturesSection() {
   }, []);
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="bg-background py-24">
+      <div className="mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-16 text-center">
           <h2
-            className={`text-4xl md:text-5xl font-bold text-gray-900 mb-4 transition-all duration-700 ${
+            className={`mb-4 text-4xl font-bold text-foreground md:text-5xl transition-all duration-700 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             Why Choose LearnHub?
           </h2>
           <p
-            className={`text-xl text-gray-700 max-w-2xl mx-auto transition-all duration-700 delay-100 ${
+            className={`mx-auto max-w-2xl text-xl text-muted-foreground transition-all delay-100 duration-700 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
@@ -65,26 +65,26 @@ export function FeaturesSection() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={index}
-                className={`p-8 rounded-2xl border border-green-100 hover:border-green-300 hover:shadow-lg bg-gradient-to-br from-white to-green-50 transition-all duration-500 hover:scale-105 ${
+                className={`rounded-2xl border border-border bg-card p-8 transition-all duration-500 hover:scale-105 hover:border-primary/50 hover:shadow-lg ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{
                   transitionDelay: isLoaded ? `${200 + index * 100}ms` : '0ms',
                 }}
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-white" />
+                <div className="mb-4 flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon className="h-6 w-6 text-primary" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-700">{feature.description}</p>
+                <h3 className="mb-2 text-xl font-bold text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             );
           })}

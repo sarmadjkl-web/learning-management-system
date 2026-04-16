@@ -31,8 +31,8 @@ export function VideoPlayer({
   };
 
   return (
-    <Card className="bg-black border-0 overflow-hidden h-full">
-      <div className="relative bg-black aspect-video flex items-center justify-center">
+    <Card className="h-full overflow-hidden border-0 bg-black">
+      <div className="relative flex aspect-video items-center justify-center bg-black">
         {/* YouTube Embed */}
         <iframe
           width="100%"
@@ -42,44 +42,44 @@ export function VideoPlayer({
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          className="w-full h-full"
+          className="h-full w-full"
         ></iframe>
       </div>
 
       {/* Video Info and Controls */}
-      <div className="bg-gray-50 p-6 border-t border-gray-200">
+      <div className="border-t border-border bg-card p-6">
         <div className="space-y-4">
           {/* Title */}
-          <h2 className="text-xl font-bold text-gray-900">{title}</h2>
+          <h2 className="text-xl font-bold text-foreground">{title}</h2>
 
           {/* Duration and Progress */}
           <div className="space-y-2">
-            <div className="flex justify-between items-center text-sm">
-              <span className="text-gray-600">Video Progress</span>
-              <span className="text-green-600 font-semibold">{progress}%</span>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-muted-foreground">Video Progress</span>
+              <span className="font-semibold text-primary">{progress}%</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
 
           {/* Stats */}
-          <div className="flex items-center gap-4 text-sm text-gray-600">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-teal-600" />
+              <Clock className="h-4 w-4 text-primary" />
               <span>{duration} minutes</span>
             </div>
             <Badge variant="secondary">HD</Badge>
           </div>
 
           {/* Captions Toggle */}
-          <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
+          <div className="flex items-center gap-2 border-t border-border pt-4">
             <input
               type="checkbox"
               id="captions"
               checked={showCaptions}
               onChange={(e) => setShowCaptions(e.target.checked)}
-              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+              className="h-4 w-4 rounded border-border text-primary focus:ring-primary"
             />
-            <label htmlFor="captions" className="text-sm font-medium text-gray-700 cursor-pointer">
+            <label htmlFor="captions" className="cursor-pointer text-sm font-medium text-foreground">
               Show Captions/Subtitles
             </label>
           </div>

@@ -39,19 +39,19 @@ export function TestimonialsSection() {
   }, []);
 
   return (
-    <section className="py-24 bg-gradient-to-br from-green-50 to-teal-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="bg-muted/50 py-24">
+      <div className="mx-auto max-w-7xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-16 text-center">
           <h2
-            className={`text-4xl md:text-5xl font-bold text-gray-900 mb-4 transition-all duration-700 ${
+            className={`mb-4 text-4xl font-bold text-foreground md:text-5xl transition-all duration-700 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             What Our Learners Say
           </h2>
           <p
-            className={`text-xl text-gray-700 max-w-2xl mx-auto transition-all duration-700 delay-100 ${
+            className={`mx-auto max-w-2xl text-xl text-muted-foreground transition-all delay-100 duration-700 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
@@ -60,11 +60,11 @@ export function TestimonialsSection() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`p-8 rounded-2xl bg-white border border-green-100 shadow-md hover:shadow-lg transition-all duration-500 ${
+              className={`rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-500 hover:shadow-lg ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{
@@ -72,14 +72,14 @@ export function TestimonialsSection() {
               }}
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="mb-4 flex gap-1">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="h-5 w-5 fill-primary text-primary" />
                 ))}
               </div>
 
               {/* Content */}
-              <p className="text-gray-700 mb-6">{testimonial.content}</p>
+              <p className="mb-6 text-muted-foreground">{testimonial.content}</p>
 
               {/* Author */}
               <div className="flex items-center gap-4">
@@ -88,8 +88,8 @@ export function TestimonialsSection() {
                   <AvatarFallback>{testimonial.name.substring(0, 2)}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  <p className="font-semibold text-foreground">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </div>
             </div>

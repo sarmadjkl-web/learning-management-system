@@ -5,6 +5,7 @@ import './globals.css'
 import { Geist, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
 import { AuthProvider } from '@/lib/auth-context'
 import { MainLayout } from '@/components/layout/main-layout'
+import { ThemeProvider } from '@/components/theme-provider'
 
 // Initialize fonts
 const geist = Geist({ subsets: ['latin'] })
@@ -39,12 +40,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-white">
-      <body className={`${geist.className} font-sans antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geist.className} font-sans antialiased text-foreground`}>
         <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
           <MainLayout>
             {children}
           </MainLayout>
+          </ThemeProvider>
         </AuthProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

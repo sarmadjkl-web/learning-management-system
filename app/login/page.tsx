@@ -32,23 +32,23 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-green-50 to-teal-50 flex items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="w-full max-w-md">
-        <Card className="border-green-200 shadow-lg">
-          <CardHeader className="text-center pb-6">
-            <div className="flex justify-center mb-4">
-              <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-                <GraduationCap className="h-7 w-7 text-white" />
+        <Card className="border-border bg-card shadow-lg">
+          <CardHeader className="pb-6 text-center">
+            <div className="mb-4 flex justify-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
+                <GraduationCap className="h-7 w-7 text-primary-foreground" />
               </div>
             </div>
-            <CardTitle className="text-2xl">Welcome to LearnHub</CardTitle>
-            <CardDescription>Sign in to your account to continue learning</CardDescription>
+            <CardTitle className="text-2xl text-foreground">Welcome to LearnHub</CardTitle>
+            <CardDescription className="text-muted-foreground">Sign in to your account to continue learning</CardDescription>
           </CardHeader>
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-700">
+                <Label htmlFor="email" className="text-foreground">
                   Email
                 </Label>
                 <Input
@@ -58,12 +58,12 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="border-green-200 focus:border-green-500"
+                  className="border-border focus:border-primary"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-gray-700">
+                <Label htmlFor="password" className="text-foreground">
                   Password
                 </Label>
                 <Input
@@ -73,25 +73,25 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="border-green-200 focus:border-green-500"
+                  className="border-border focus:border-primary"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white"
+                className="w-full"
               >
                 {isLoading ? 'Signing in...' : 'Sign In'}
               </Button>
             </form>
 
-            <div className="mt-6 text-center text-sm text-gray-600">
+            <div className="mt-6 text-center text-sm text-muted-foreground">
               Demo credentials are pre-filled. Click Sign In to continue.
             </div>
 
             <div className="mt-4 text-center">
-              <Link href="/" className="text-green-600 hover:text-green-700 text-sm font-medium">
+              <Link href="/" className="text-sm font-medium text-primary hover:text-primary/80">
                 Back to Home
               </Link>
             </div>

@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth-context';
-import { Sidebar } from './sidebar';
-import { TopBar } from './top-bar';
-import { useEffect } from 'react';
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth-context";
+import { AppSidebar as Sidebar } from "./sidebar";
+import { TopBar } from "./top-bar";
+import { useEffect } from "react";
+import { SidebarProvider } from "../ui/sidebar";
 
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const PUBLIC_ROUTES = ['/', '/login'];
+const PUBLIC_ROUTES = ["/", "/login"];
 
 export function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname();
@@ -21,7 +22,7 @@ export function MainLayout({ children }: MainLayoutProps) {
 
   useEffect(() => {
     if (!isLoading && !user && !isPublicRoute) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [isLoading, user, pathname, router, isPublicRoute]);
 
@@ -31,10 +32,10 @@ export function MainLayout({ children }: MainLayoutProps) {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-white via-green-50 to-teal-50">
+      <div className="flex h-screen items-center justify-center bg-background">
         <div className="text-center">
-          <div className="h-12 w-12 rounded-full border-4 border-green-200 border-t-green-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading...</p>
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-border border-t-primary" />
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     );
@@ -45,14 +46,14 @@ export function MainLayout({ children }: MainLayoutProps) {
   }
 
   return (
-    <div className="flex h-screen bg-white">
+    <SidebarProvider>
       <Sidebar />
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex flex-1 flex-col">
         <TopBar />
-        <main className="flex-1 overflow-y-auto bg-gradient-to-br from-white via-green-50 to-teal-50">
+        <main className="flex-1 overflow-y-auto bg-background">
           {children}
         </main>
       </div>
-    </div>
+    </SidebarProvider>
   );
 }

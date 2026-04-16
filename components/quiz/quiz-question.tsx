@@ -24,46 +24,46 @@ export function QuizQuestionComponent({
   userAnswer,
 }: QuizQuestionComponentProps) {
   return (
-    <Card className="bg-white border-green-100 p-8">
+    <Card className="border-border bg-card p-8">
       {/* Question Header */}
       <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-semibold text-teal-600">
+        <div className="mb-4 flex items-center justify-between">
+          <span className="text-sm font-semibold text-primary">
             Question {questionNumber} of {totalQuestions}
           </span>
-          <div className="h-2 bg-gray-200 rounded-full w-32 overflow-hidden">
+          <div className="h-2 w-32 overflow-hidden rounded-full bg-secondary">
             <div
-              className="h-full bg-gradient-to-r from-green-500 to-teal-600 transition-all"
+              className="h-full bg-primary transition-all"
               style={{ width: `${(questionNumber / totalQuestions) * 100}%` }}
             />
           </div>
         </div>
-        <h2 className="text-2xl font-bold text-gray-900">{question.question}</h2>
+        <h2 className="text-2xl font-bold text-foreground">{question.question}</h2>
       </div>
 
       {/* Options */}
-      <div className="space-y-3 mb-6">
+      <div className="mb-6 space-y-3">
         {question.options.map((option, index) => {
           const isSelected = selectedAnswer === index;
           const isCorrect = index === question.correctAnswer;
           const isUserAnswer = userAnswer === index;
 
           let className =
-            'relative p-4 rounded-lg border-2 cursor-pointer transition-all text-left';
+            'relative p-4 rounded-lg border-2 cursor-pointer transition-all text-left w-full';
 
           if (isRevealed) {
             if (isCorrect) {
               className +=
-                ' border-green-500 bg-green-50 ring-2 ring-green-200';
+                ' border-primary bg-primary/10 ring-2 ring-primary/20';
             } else if (isUserAnswer && !isCorrect) {
-              className += ' border-red-500 bg-red-50 ring-2 ring-red-200';
+              className += ' border-destructive bg-destructive/10 ring-2 ring-destructive/20';
             } else {
-              className += ' border-gray-200 bg-gray-50';
+              className += ' border-border bg-muted';
             }
           } else {
             className += isSelected
-              ? ' border-green-500 bg-green-50'
-              : ' border-gray-200 hover:border-green-300 hover:bg-green-50';
+              ? ' border-primary bg-primary/10'
+              : ' border-border hover:border-primary/50 hover:bg-primary/5';
           }
 
           return (
@@ -74,32 +74,32 @@ export function QuizQuestionComponent({
               className={className}
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
+                <div className="mt-1 flex-shrink-0">
                   <div
-                    className={`h-5 w-5 rounded-full border-2 flex items-center justify-center ${
+                    className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${
                       isRevealed
                         ? isCorrect
-                          ? 'border-green-600 bg-green-600'
+                          ? 'border-primary bg-primary'
                           : isUserAnswer && !isCorrect
-                          ? 'border-red-600 bg-red-600'
-                          : 'border-gray-300'
+                          ? 'border-destructive bg-destructive'
+                          : 'border-muted-foreground'
                         : isSelected
-                        ? 'border-green-600 bg-green-600'
-                        : 'border-gray-300'
+                        ? 'border-primary bg-primary'
+                        : 'border-muted-foreground'
                     }`}
                   >
                     {isSelected || (isRevealed && (isCorrect || isUserAnswer)) ? (
-                      <div className="h-2 w-2 bg-white rounded-full" />
+                      <div className="h-2 w-2 rounded-full bg-background" />
                     ) : null}
                   </div>
                 </div>
                 <div className="flex-1 text-left">
-                  <p className="font-medium text-gray-900">{option}</p>
+                  <p className="font-medium text-foreground">{option}</p>
                   {isRevealed && isCorrect && (
-                    <p className="text-xs text-green-600 font-semibold mt-1">Correct Answer</p>
+                    <p className="mt-1 text-xs font-semibold text-primary">Correct Answer</p>
                   )}
                   {isRevealed && isUserAnswer && !isCorrect && (
-                    <p className="text-xs text-red-600 font-semibold mt-1">Your Answer</p>
+                    <p className="mt-1 text-xs font-semibold text-destructive">Your Answer</p>
                   )}
                 </div>
               </div>
@@ -110,9 +110,9 @@ export function QuizQuestionComponent({
 
       {/* Explanation (shown after answer is revealed) */}
       {isRevealed && (
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-sm font-semibold text-blue-900 mb-2">Explanation</p>
-          <p className="text-sm text-blue-800">{question.explanation}</p>
+        <div className="mt-6 rounded-lg border border-border bg-secondary p-4">
+          <p className="mb-2 text-sm font-semibold text-foreground">Explanation</p>
+          <p className="text-sm text-muted-foreground">{question.explanation}</p>
         </div>
       )}
     </Card>

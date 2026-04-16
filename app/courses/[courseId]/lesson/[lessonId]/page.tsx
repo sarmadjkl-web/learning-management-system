@@ -29,19 +29,19 @@ export default function LessonPage() {
   const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
 
   if (!lesson) {
-    return <div className="p-8 text-center">Lesson not found</div>;
+    return <div className="p-8 text-center text-muted-foreground">Lesson not found</div>;
   }
 
   return (
     <div className="p-8">
       {/* Header */}
       <div className="mb-8">
-        <Link href={`/courses/${courseId}`} className="flex items-center gap-2 text-green-600 hover:text-green-700 mb-4">
+        <Link href={`/courses/${courseId}`} className="flex items-center gap-2 text-primary hover:text-primary/80 mb-4">
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Course</span>
         </Link>
-        <h1 className="text-3xl font-bold text-gray-900">{lesson.title}</h1>
-        <p className="text-gray-600 mt-2">{lesson.description}</p>
+        <h1 className="text-3xl font-bold text-foreground">{lesson.title}</h1>
+        <p className="text-muted-foreground mt-2">{lesson.description}</p>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
@@ -57,16 +57,16 @@ export default function LessonPage() {
 
           {/* Tabs */}
           <Tabs defaultValue="transcript" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-green-50 border border-green-100">
-              <TabsTrigger value="transcript" className="data-[state=active]:bg-white data-[state=active]:text-green-600">
+            <TabsList className="grid w-full grid-cols-3 bg-secondary border border-border">
+              <TabsTrigger value="transcript" className="data-[state=active]:bg-background data-[state=active]:text-primary">
                 Transcript
               </TabsTrigger>
-              <TabsTrigger value="discussions" className="data-[state=active]:bg-white data-[state=active]:text-green-600">
+              <TabsTrigger value="discussions" className="data-[state=active]:bg-background data-[state=active]:text-primary">
                 <MessageCircle className="h-4 w-4 mr-2" />
                 Discussions
               </TabsTrigger>
               {quiz && (
-                <TabsTrigger value="quiz" className="data-[state=active]:bg-white data-[state=active]:text-green-600">
+                <TabsTrigger value="quiz" className="data-[state=active]:bg-background data-[state=active]:text-primary">
                   <Award className="h-4 w-4 mr-2" />
                   Quiz
                 </TabsTrigger>
@@ -80,23 +80,23 @@ export default function LessonPage() {
 
             {/* Discussions Tab */}
             <TabsContent value="discussions" className="space-y-4">
-              <Card className="bg-white border-green-100 p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Discussion Threads</h3>
+              <Card className="bg-card border-border p-6">
+                <h3 className="font-semibold text-foreground mb-4">Discussion Threads</h3>
                 {discussions.length > 0 ? (
                   <div className="space-y-4">
                     {discussions.map((thread) => (
                       <Link key={thread.id} href={`/discussions/${thread.id}`}>
-                        <div className="p-4 rounded-lg border border-green-100 hover:border-green-300 hover:bg-green-50 transition-all cursor-pointer">
+                        <div className="p-4 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition-all cursor-pointer">
                           <div className="flex items-start justify-between mb-2">
-                            <h4 className="font-semibold text-gray-900">{thread.title}</h4>
+                            <h4 className="font-semibold text-foreground">{thread.title}</h4>
                             {thread.pinned && (
-                              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                              <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded">
                                 Pinned
                               </span>
                             )}
                           </div>
-                          <p className="text-sm text-gray-600 line-clamp-2">{thread.content}</p>
-                          <div className="flex items-center gap-4 mt-3 text-xs text-gray-500">
+                          <p className="text-sm text-muted-foreground line-clamp-2">{thread.content}</p>
+                          <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
                             <span>{thread.replies} replies</span>
                             <span>{thread.views} views</span>
                             <span>{thread.likes} likes</span>
@@ -106,7 +106,7 @@ export default function LessonPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-600">No discussions yet. Be the first to start one!</p>
+                  <p className="text-muted-foreground">No discussions yet. Be the first to start one!</p>
                 )}
               </Card>
             </TabsContent>
@@ -114,33 +114,33 @@ export default function LessonPage() {
             {/* Quiz Tab */}
             {quiz && (
               <TabsContent value="quiz" className="space-y-4">
-                <Card className="bg-white border-green-100 p-6">
+                <Card className="bg-card border-border p-6">
                   <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold text-gray-900">{quiz.title}</h3>
-                      <p className="text-sm text-gray-600 mt-2">{quiz.description}</p>
+                      <h3 className="font-semibold text-foreground">{quiz.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-2">{quiz.description}</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4 py-4 border-y border-green-100">
+                    <div className="grid md:grid-cols-2 gap-4 py-4 border-y border-border">
                       <div>
-                        <p className="text-sm text-gray-600">Questions</p>
-                        <p className="text-2xl font-bold text-green-600">{quiz.questions.length}</p>
+                        <p className="text-sm text-muted-foreground">Questions</p>
+                        <p className="text-2xl font-bold text-primary">{quiz.questions.length}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Passing Score</p>
-                        <p className="text-2xl font-bold text-green-600">{quiz.passingScore}%</p>
+                        <p className="text-sm text-muted-foreground">Passing Score</p>
+                        <p className="text-2xl font-bold text-primary">{quiz.passingScore}%</p>
                       </div>
                     </div>
 
                     {quiz.completed && quiz.score !== null && (
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <p className="text-sm text-gray-600">Your Score</p>
-                        <p className="text-2xl font-bold text-green-600 mt-1">{quiz.score}%</p>
+                      <div className="bg-secondary border border-border rounded-lg p-4">
+                        <p className="text-sm text-muted-foreground">Your Score</p>
+                        <p className="text-2xl font-bold text-primary mt-1">{quiz.score}%</p>
                       </div>
                     )}
 
                     <Link href={`/courses/${courseId}/lesson/${lessonId}/quiz`}>
-                      <Button className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white">
+                      <Button className="w-full">
                         {quiz.completed ? 'Retake Quiz' : 'Start Quiz'}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -157,7 +157,7 @@ export default function LessonPage() {
               <Link href={`/courses/${courseId}/lesson/${previousLesson.id}`} className="flex-1">
                 <Button
                   variant="outline"
-                  className="w-full border-green-200 text-gray-700 hover:bg-green-50"
+                  className="w-full border-border text-foreground hover:bg-secondary"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Previous Lesson
@@ -166,7 +166,7 @@ export default function LessonPage() {
             )}
             {nextLesson && (
               <Link href={`/courses/${courseId}/lesson/${nextLesson.id}`} className="flex-1">
-                <Button className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white">
+                <Button className="w-full">
                   Next Lesson
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

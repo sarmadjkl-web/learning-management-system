@@ -14,12 +14,12 @@ export default function DashboardPage() {
     <div className="p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Welcome back, {mockCurrentUser.name}! 👋</h1>
-        <p className="text-gray-600 mt-2">Here&apos;s your learning overview</p>
+        <h1 className="text-3xl font-bold text-foreground">Welcome back, {mockCurrentUser.name}! 👋</h1>
+        <p className="mt-2 text-muted-foreground">Here&apos;s your learning overview</p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <StatCard
           icon={BookOpen}
           label="Courses Enrolled"
@@ -49,9 +49,9 @@ export default function DashboardPage() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid lg:grid-cols-3 gap-8 mb-8">
+      <div className="mb-8 grid gap-8 lg:grid-cols-3">
         {/* Left Column */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="space-y-8 lg:col-span-2">
           <ActivityChart />
           <CategoryChart />
         </div>

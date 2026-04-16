@@ -21,14 +21,14 @@ export function LessonSidebar({ lessons, currentLessonId, courseId }: LessonSide
   return (
     <div className="space-y-6">
       {/* Course Progress */}
-      <Card className="bg-white border-green-100 p-6">
-        <h3 className="font-semibold text-gray-900 mb-4">Course Progress</h3>
+      <Card className="border-border bg-card p-6">
+        <h3 className="mb-4 font-semibold text-foreground">Course Progress</h3>
         <div className="space-y-3">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">
+            <span className="text-muted-foreground">
               {completedCount} of {lessons.length} lessons
             </span>
-            <span className="font-bold text-green-600">{progressPercentage}%</span>
+            <span className="font-bold text-primary">{progressPercentage}%</span>
           </div>
           <Progress value={progressPercentage} className="h-2" />
         </div>
@@ -36,7 +36,7 @@ export function LessonSidebar({ lessons, currentLessonId, courseId }: LessonSide
 
       {/* Lessons List */}
       <div>
-        <h3 className="font-semibold text-gray-900 mb-4">Lessons</h3>
+        <h3 className="mb-4 font-semibold text-foreground">Lessons</h3>
         <div className="space-y-2">
           {lessons.map((lesson) => {
             const isCurrent = lesson.id === currentLessonId;
@@ -45,28 +45,28 @@ export function LessonSidebar({ lessons, currentLessonId, courseId }: LessonSide
             return (
               <Link key={lesson.id} href={`/courses/${courseId}/lesson/${lesson.id}`}>
                 <button
-                  className={`w-full flex items-start gap-3 p-3 rounded-lg transition-all ${
+                  className={`flex w-full items-start gap-3 rounded-lg p-3 transition-all ${
                     isCurrent
-                      ? 'bg-gradient-to-r from-green-100 to-teal-100 border border-green-300'
-                      : 'hover:bg-green-50 border border-transparent'
+                      ? 'border border-primary/20 bg-primary/10'
+                      : 'border border-transparent hover:bg-secondary'
                   }`}
                 >
-                  <div className="flex-shrink-0 mt-1">
+                  <div className="mt-1 flex-shrink-0">
                     {isCompleted ? (
-                      <CheckCircle2 className="h-5 w-5 text-green-600" />
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
                     ) : (
-                      <Circle className="h-5 w-5 text-gray-400" />
+                      <Circle className="h-5 w-5 text-muted-foreground" />
                     )}
                   </div>
                   <div className="flex-1 text-left">
                     <p
-                      className={`text-sm font-medium line-clamp-2 ${
-                        isCurrent ? 'text-green-700' : 'text-gray-900'
+                      className={`line-clamp-2 text-sm font-medium ${
+                        isCurrent ? 'text-primary' : 'text-foreground'
                       }`}
                     >
                       {lesson.order}. {lesson.title}
                     </p>
-                    <p className="text-xs text-gray-600 mt-1">{lesson.duration} min</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{lesson.duration} min</p>
                   </div>
                 </button>
               </Link>
@@ -76,19 +76,19 @@ export function LessonSidebar({ lessons, currentLessonId, courseId }: LessonSide
       </div>
 
       {/* Lesson Features */}
-      <Card className="bg-gradient-to-br from-green-50 to-teal-50 border-green-200 p-6">
-        <h3 className="font-semibold text-gray-900 mb-4">In This Lesson</h3>
+      <Card className="border-border bg-secondary p-6">
+        <h3 className="mb-4 font-semibold text-foreground">In This Lesson</h3>
         <div className="space-y-3 text-sm">
-          <div className="flex items-center gap-2 text-gray-700">
-            <Award className="h-4 w-4 text-green-600 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-foreground">
+            <Award className="h-4 w-4 flex-shrink-0 text-primary" />
             <span>Interactive quiz included</span>
           </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <MessageSquare className="h-4 w-4 text-teal-600 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-foreground">
+            <MessageSquare className="h-4 w-4 flex-shrink-0 text-primary" />
             <span>Discussion forum available</span>
           </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-foreground">
+            <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
             <span>Certificate upon completion</span>
           </div>
         </div>

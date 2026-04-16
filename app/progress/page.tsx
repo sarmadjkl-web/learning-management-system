@@ -22,63 +22,63 @@ export default function ProgressPage() {
     <div className="p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Learning Progress</h1>
-        <p className="text-gray-600 mt-2">Track your learning journey and achievements</p>
+        <h1 className="text-3xl font-bold text-foreground">Learning Progress</h1>
+        <p className="mt-2 text-muted-foreground">Track your learning journey and achievements</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <Card className="bg-white border-green-100 p-6">
+      <div className="mb-8 grid gap-6 md:grid-cols-3">
+        <Card className="border-border bg-card p-6">
           <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-lg bg-green-100 flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-green-600" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <BookOpen className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Courses in Progress</p>
-              <p className="text-2xl font-bold text-gray-900">3</p>
+              <p className="text-sm text-muted-foreground">Courses in Progress</p>
+              <p className="text-2xl font-bold text-foreground">3</p>
             </div>
           </div>
         </Card>
 
-        <Card className="bg-white border-green-100 p-6">
+        <Card className="border-border bg-card p-6">
           <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-lg bg-teal-100 flex items-center justify-center">
-              <Target className="h-6 w-6 text-teal-600" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Target className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Lessons Completed</p>
-              <p className="text-2xl font-bold text-gray-900">43</p>
+              <p className="text-sm text-muted-foreground">Lessons Completed</p>
+              <p className="text-2xl font-bold text-foreground">43</p>
             </div>
           </div>
         </Card>
 
-        <Card className="bg-white border-green-100 p-6">
+        <Card className="border-border bg-card p-6">
           <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center">
-              <Zap className="h-6 w-6 text-blue-600" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Zap className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Learning Streak</p>
-              <p className="text-2xl font-bold text-gray-900">12 days</p>
+              <p className="text-sm text-muted-foreground">Learning Streak</p>
+              <p className="text-2xl font-bold text-foreground">12 days</p>
             </div>
           </div>
         </Card>
       </div>
 
       {/* Course Progress */}
-      <div className="grid lg:grid-cols-3 gap-8 mb-8">
+      <div className="mb-8 grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <Card className="bg-white border-green-100 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Course Progress</h2>
+          <Card className="border-border bg-card p-6">
+            <h2 className="mb-6 text-xl font-bold text-foreground">Course Progress</h2>
             <div className="space-y-6">
               {mockCourseProgress.map((course) => (
                 <div key={course.courseId}>
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="font-semibold text-gray-900">{course.courseName}</h3>
-                    <span className="text-sm font-bold text-green-600">{course.progress}%</span>
+                  <div className="mb-2 flex items-center justify-between">
+                    <h3 className="font-semibold text-foreground">{course.courseName}</h3>
+                    <span className="text-sm font-bold text-primary">{course.progress}%</span>
                   </div>
-                  <Progress value={course.progress} className="h-2 mb-2" />
-                  <p className="text-xs text-gray-600">
+                  <Progress value={course.progress} className="mb-2 h-2" />
+                  <p className="text-xs text-muted-foreground">
                     {course.completedLessons} of {course.totalLessons} lessons • {course.hoursSpent}h spent
                   </p>
                 </div>
@@ -88,14 +88,14 @@ export default function ProgressPage() {
         </div>
 
         <div>
-          <Card className="bg-white border-green-100 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Top Skills</h2>
+          <Card className="border-border bg-card p-6">
+            <h2 className="mb-6 text-xl font-bold text-foreground">Top Skills</h2>
             <div className="space-y-4">
               {mockSkillMetrics.slice(0, 5).map((skill) => (
                 <div key={skill.skill}>
-                  <div className="flex justify-between items-center mb-2">
-                    <p className="text-sm font-medium text-gray-900">{skill.skill}</p>
-                    <p className="text-xs font-bold text-green-600">{skill.proficiency}%</p>
+                  <div className="mb-2 flex items-center justify-between">
+                    <p className="text-sm font-medium text-foreground">{skill.skill}</p>
+                    <p className="text-xs font-bold text-primary">{skill.proficiency}%</p>
                   </div>
                   <Progress value={skill.proficiency} className="h-1.5" />
                 </div>
@@ -106,22 +106,23 @@ export default function ProgressPage() {
       </div>
 
       {/* Activity Chart */}
-      <Card className="bg-white border-green-100 p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-6">Weekly Activity</h2>
+      <Card className="border-border bg-card p-6">
+        <h2 className="mb-6 text-xl font-bold text-foreground">Weekly Activity</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={mockDailyActivity}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0f2f1" />
-            <XAxis dataKey="date" stroke="#999" />
-            <YAxis stroke="#999" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+            <XAxis dataKey="date" stroke="var(--muted-foreground)" />
+            <YAxis stroke="var(--muted-foreground)" />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#fff',
-                border: '2px solid #10b981',
+                backgroundColor: 'var(--background)',
+                border: '2px solid var(--primary)',
                 borderRadius: '8px',
+                color: 'var(--foreground)'
               }}
-              cursor={{ fill: 'rgba(16, 185, 129, 0.1)' }}
+              cursor={{ fill: 'var(--primary)', opacity: 0.1 }}
             />
-            <Bar dataKey="minutes" fill="#10b981" radius={[8, 8, 0, 0]} name="Minutes Studied" />
+            <Bar dataKey="minutes" fill="var(--primary)" radius={[8, 8, 0, 0]} name="Minutes Studied" />
           </BarChart>
         </ResponsiveContainer>
       </Card>

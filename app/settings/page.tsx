@@ -16,26 +16,26 @@ export default function SettingsPage() {
     <div className="p-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">Manage your account and preferences</p>
+        <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+        <p className="mt-2 text-muted-foreground">Manage your account and preferences</p>
       </div>
 
       {/* Profile Settings */}
       <div className="max-w-2xl space-y-8">
         {/* Profile Card */}
-        <Card className="bg-white border-green-100 p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Profile Settings</h2>
+        <Card className="border-border bg-card p-8">
+          <h2 className="mb-6 text-2xl font-bold text-foreground">Profile Settings</h2>
 
           <div className="space-y-6">
             {/* Avatar */}
             <div>
-              <Label className="text-gray-700 font-semibold mb-4 block">Profile Picture</Label>
+              <Label className="mb-4 block font-semibold text-foreground">Profile Picture</Label>
               <div className="flex items-center gap-4">
                 <Avatar className="h-20 w-20">
                   <AvatarImage src={user?.avatar} alt={user?.name} />
-                  <AvatarFallback>{user?.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+                  <AvatarFallback>{user?.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
                 </Avatar>
-                <Button variant="outline" className="border-green-200 text-gray-700 hover:bg-green-50">
+                <Button variant="outline" className="border-border text-foreground hover:bg-secondary">
                   Change Picture
                 </Button>
               </div>
@@ -43,84 +43,84 @@ export default function SettingsPage() {
 
             {/* Name */}
             <div>
-              <Label htmlFor="name" className="text-gray-700 font-semibold mb-2 block">
+              <Label htmlFor="name" className="mb-2 block font-semibold text-foreground">
                 Full Name
               </Label>
               <Input
                 id="name"
                 defaultValue={user?.name}
-                className="border-green-200 focus:border-green-500"
+                className="border-border bg-background focus:border-primary"
               />
             </div>
 
             {/* Email */}
             <div>
-              <Label htmlFor="email" className="text-gray-700 font-semibold mb-2 block">
+              <Label htmlFor="email" className="mb-2 block font-semibold text-foreground">
                 Email Address
               </Label>
               <Input
                 id="email"
                 type="email"
                 defaultValue={user?.email}
-                className="border-green-200 focus:border-green-500"
+                className="border-border bg-background focus:border-primary"
               />
             </div>
 
             {/* Bio */}
             <div>
-              <Label htmlFor="bio" className="text-gray-700 font-semibold mb-2 block">
+              <Label htmlFor="bio" className="mb-2 block font-semibold text-foreground">
                 Bio
               </Label>
               <textarea
                 id="bio"
                 defaultValue={mockCurrentUser.bio}
-                className="w-full rounded-lg border border-green-200 px-4 py-2 focus:border-green-500 focus:outline-none resize-none"
+                className="w-full resize-none rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:outline-none"
                 rows={4}
               />
             </div>
 
-            <Button className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white">
+            <Button className="w-full">
               Save Changes
             </Button>
           </div>
         </Card>
 
         {/* Security Settings */}
-        <Card className="bg-white border-green-100 p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Security</h2>
+        <Card className="border-border bg-card p-8">
+          <h2 className="mb-6 text-2xl font-bold text-foreground">Security</h2>
 
           <div className="space-y-6">
             {/* Change Password */}
-            <div className="pb-6 border-b border-green-100">
-              <div className="flex items-center justify-between mb-4">
+            <div className="border-b border-border pb-6">
+              <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-green-100 flex items-center justify-center">
-                    <Lock className="h-5 w-5 text-green-600" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Lock className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">Password</p>
-                    <p className="text-sm text-gray-600">Last changed 3 months ago</p>
+                    <p className="font-semibold text-foreground">Password</p>
+                    <p className="text-sm text-muted-foreground">Last changed 3 months ago</p>
                   </div>
                 </div>
-                <Button variant="outline" className="border-green-200 text-gray-700 hover:bg-green-50">
+                <Button variant="outline" className="border-border text-foreground hover:bg-secondary">
                   Change
                 </Button>
               </div>
             </div>
 
             {/* Two-Factor Authentication */}
-            <div className="pb-6 border-b border-green-100">
+            <div className="border-b border-border pb-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-teal-100 flex items-center justify-center">
-                    <Eye className="h-5 w-5 text-teal-600" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Eye className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">Two-Factor Authentication</p>
-                    <p className="text-sm text-gray-600">Not enabled</p>
+                    <p className="font-semibold text-foreground">Two-Factor Authentication</p>
+                    <p className="text-sm text-muted-foreground">Not enabled</p>
                   </div>
                 </div>
-                <Button variant="outline" className="border-green-200 text-gray-700 hover:bg-green-50">
+                <Button variant="outline" className="border-border text-foreground hover:bg-secondary">
                   Enable
                 </Button>
               </div>
@@ -129,62 +129,62 @@ export default function SettingsPage() {
         </Card>
 
         {/* Notification Settings */}
-        <Card className="bg-white border-green-100 p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Notifications</h2>
+        <Card className="border-border bg-card p-8">
+          <h2 className="mb-6 text-2xl font-bold text-foreground">Notifications</h2>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-100">
+            <div className="flex items-center justify-between rounded-lg border border-border bg-secondary p-4">
               <div className="flex items-center gap-3">
-                <Bell className="h-5 w-5 text-green-600" />
+                <Bell className="h-5 w-5 text-primary" />
                 <div>
-                  <p className="font-medium text-gray-900">Course Updates</p>
-                  <p className="text-sm text-gray-600">Get notified about new lessons</p>
+                  <p className="font-medium text-foreground">Course Updates</p>
+                  <p className="text-sm text-muted-foreground">Get notified about new lessons</p>
                 </div>
               </div>
               <input
                 type="checkbox"
                 defaultChecked
-                className="h-5 w-5 rounded border-green-300 text-green-600 focus:ring-green-500"
+                className="h-5 w-5 rounded border-primary text-primary focus:ring-primary"
               />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-100">
+            <div className="flex items-center justify-between rounded-lg border border-border bg-secondary p-4">
               <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-green-600" />
+                <Mail className="h-5 w-5 text-primary" />
                 <div>
-                  <p className="font-medium text-gray-900">Discussion Replies</p>
-                  <p className="text-sm text-gray-600">Email when someone replies to your posts</p>
+                  <p className="font-medium text-foreground">Discussion Replies</p>
+                  <p className="text-sm text-muted-foreground">Email when someone replies to your posts</p>
                 </div>
               </div>
               <input
                 type="checkbox"
                 defaultChecked
-                className="h-5 w-5 rounded border-green-300 text-green-600 focus:ring-green-500"
+                className="h-5 w-5 rounded border-primary text-primary focus:ring-primary"
               />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-100">
+            <div className="flex items-center justify-between rounded-lg border border-border bg-secondary p-4">
               <div className="flex items-center gap-3">
-                <Bell className="h-5 w-5 text-green-600" />
+                <Bell className="h-5 w-5 text-primary" />
                 <div>
-                  <p className="font-medium text-gray-900">Weekly Summary</p>
-                  <p className="text-sm text-gray-600">Receive a summary of your learning activity</p>
+                  <p className="font-medium text-foreground">Weekly Summary</p>
+                  <p className="text-sm text-muted-foreground">Receive a summary of your learning activity</p>
                 </div>
               </div>
               <input
                 type="checkbox"
                 defaultChecked
-                className="h-5 w-5 rounded border-green-300 text-green-600 focus:ring-green-500"
+                className="h-5 w-5 rounded border-primary text-primary focus:ring-primary"
               />
             </div>
           </div>
         </Card>
 
         {/* Danger Zone */}
-        <Card className="bg-red-50 border-red-200 p-8">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Danger Zone</h2>
-          <p className="text-red-700 mb-4">Once you delete your account, there is no going back. Please be certain.</p>
-          <Button className="bg-red-600 hover:bg-red-700 text-white">
+        <Card className="border-destructive/20 bg-destructive/10 p-8">
+          <h2 className="mb-4 text-2xl font-bold text-destructive">Danger Zone</h2>
+          <p className="mb-4 text-destructive">Once you delete your account, there is no going back. Please be certain.</p>
+          <Button variant="destructive">
             Delete Account
           </Button>
         </Card>

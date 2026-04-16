@@ -26,7 +26,7 @@ export default function QuizPage() {
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   if (!quiz) {
-    return <div className="p-8 text-center">Quiz not found</div>;
+    return <div className="p-8 text-center text-muted-foreground">Quiz not found</div>;
   }
 
   const handleAnswerSelect = (optionIndex: number) => {
@@ -90,17 +90,17 @@ export default function QuizPage() {
       <div className="mb-8">
         <Link
           href={`/courses/${courseId}/lesson/${lessonId}`}
-          className="flex items-center gap-2 text-green-600 hover:text-green-700 mb-4"
+          className="mb-4 flex items-center gap-2 text-primary hover:text-primary/80"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Lesson</span>
         </Link>
-        <h1 className="text-3xl font-bold text-gray-900">{quiz.title}</h1>
-        <p className="text-gray-600 mt-2">{quiz.description}</p>
+        <h1 className="text-3xl font-bold text-foreground">{quiz.title}</h1>
+        <p className="mt-2 text-muted-foreground">{quiz.description}</p>
       </div>
 
       {/* Quiz Container */}
-      <div className="max-w-3xl mx-auto">
+      <div className="mx-auto max-w-3xl">
         {/* Question */}
         <QuizQuestionComponent
           question={question}
@@ -118,14 +118,14 @@ export default function QuizPage() {
             <Button
               onClick={handleSubmitAnswer}
               disabled={!isAnswered}
-              className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full"
             >
               Submit Answer
             </Button>
           ) : (
             <Button
               onClick={handleNextQuestion}
-              className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white"
+              className="w-full"
             >
               {currentQuestion === quiz.questions.length - 1
                 ? 'Complete Quiz'
@@ -135,9 +135,9 @@ export default function QuizPage() {
           )}
 
           {/* Question Navigation */}
-          <Card className="bg-white border-green-100 p-6">
-            <p className="text-sm font-semibold text-gray-900 mb-4">Jump to Question</p>
-            <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
+          <Card className="border-border bg-card p-6">
+            <p className="mb-4 text-sm font-semibold text-foreground">Jump to Question</p>
+            <div className="grid grid-cols-5 gap-2 md:grid-cols-10">
               {quiz.questions.map((_, index) => (
                 <button
                   key={index}
@@ -147,10 +147,10 @@ export default function QuizPage() {
                   }}
                   className={`h-10 rounded-lg font-semibold transition-all ${
                     index === currentQuestion
-                      ? 'bg-gradient-to-r from-green-500 to-teal-600 text-white ring-2 ring-green-300'
+                      ? 'bg-primary text-primary-foreground ring-2 ring-primary/30'
                       : userAnswers[index] !== null
-                      ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-primary/20 text-primary hover:bg-primary/30'
+                      : 'bg-secondary text-foreground hover:bg-secondary/80'
                   }`}
                 >
                   {index + 1}
